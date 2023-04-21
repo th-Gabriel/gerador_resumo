@@ -5,7 +5,7 @@ from fpdf import FPDF
 class GeradorResumo:
     def __init__(self, tema):
         self.tema = tema
-
+        self.resumo = None
 
     def pesquisar_wikipedia(self):
         wikipedia.set_lang('pt')
@@ -19,10 +19,13 @@ class GeradorResumo:
 
 
     def gerar_pdf(self):
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.set_font('Arial', size=12)
-        pdf.cell(0, 10, txt=self.tema, align='C')
-        pdf.ln()
-        pdf.multi_cell(180, 10, txt=self.resumo, align='J')
-        pdf.output(f'resumo_{self.tema}.pdf')
+        if self.resumo is None:
+            pass
+        else:
+            pdf = FPDF()
+            pdf.add_page()
+            pdf.set_font('Arial', size=12)
+            pdf.cell(0, 10, txt=self.tema, align='C')
+            pdf.ln()
+            pdf.multi_cell(180, 10, txt=self.resumo, align='J')
+            pdf.output(f'resumo_{self.tema}.pdf')
