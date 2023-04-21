@@ -3,13 +3,11 @@ from fpdf import FPDF
 
 
 class GeradorResumo:
-    def __init__(self):
-        pass
+    def __init__(self, tema):
+        self.tema = tema
 
 
     def pesquisar_wikipedia(self):
-        self.tema = input('DIGITE O TEMA:').upper()
-
         wikipedia.set_lang('pt')
         try:
             pagina = wikipedia.page(self.tema)
@@ -26,5 +24,5 @@ class GeradorResumo:
         pdf.set_font('Arial', size=12)
         pdf.cell(0, 10, txt=self.tema, align='C')
         pdf.ln()
-        pdf.multi_cell(180, 10, txt=self.resumo, align='J', )
+        pdf.multi_cell(180, 10, txt=self.resumo, align='J')
         pdf.output(f'resumo_{self.tema}.pdf')
