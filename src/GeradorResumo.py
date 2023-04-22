@@ -1,5 +1,7 @@
 import wikipedia
 from fpdf import FPDF
+import os
+from pathlib import Path
 
 
 class GeradorResumo:
@@ -28,4 +30,5 @@ class GeradorResumo:
             pdf.cell(0, 10, txt=self.tema, align='C')
             pdf.ln()
             pdf.multi_cell(180, 10, txt=self.resumo, align='J')
-            pdf.output(f'resumo_{self.tema}.pdf')
+            downloads_path = str(Path.home() / "Downloads")
+            pdf.output(os.path.join(downloads_path, f'resumo_{self.tema}.pdf'))
